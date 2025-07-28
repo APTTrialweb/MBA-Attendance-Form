@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>APT Attendance Submission</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- particles.js -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #0a0a0a;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+    }
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .container {
+      text-align: center;
+      padding-top: 30px;
+      position: relative;
+      z-index: 1;
+    }
+    .container img {
+      width: 60px;
+    }
+    .container h2 {
+      color: #00adb5;
+      margin: 10px 0;
+      font-size: 1.6rem;
+    }
+    form {
+      background: rgba(255,255,255,0.05);
+      padding: 25px;
+      max-width: 400px;
+      margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+      z-index: 1;
+      position: relative;
+    }
+    .input-group {
+      position: relative;
+      margin: 15px 0;
+    }
+    .input-group i {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #bbb;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 10px 10px 10px 35px;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+    }
+    .input-group input::placeholder {
+      color: #ccc;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #00adb5;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div id="particles-js"></div>
+
+<div class="container">
+  <img src="https://apt.shiksha/_next/image?url=%2Fimages%2Flogo-dark.png&w=256&q=75" alt="APT Logo">
+  <h2>APT Attendance Form</h2>
+</div>
+
+<form id="attendanceForm">
+  <div class="input-group">
+    <i class="fa-solid fa-user"></i>
+    <input type="text" name="name" placeholder="Enter Your Name" required>
+  </div>
+  <div class="input-group">
+    <i class="fa-solid fa-check-circle"></i>
+    <input type="text" name="attendance" placeholder="Present / Absent" required>
+  </div>
+  <button type="submit">Submit Attendance</button>
+</form>
+
+<!-- Pop Sound Effect -->
+<audio id="popSound" src="https://assets.mixkit.co/sfx/preview/mixkit-quick-win-video-game-notification-269.wav" preload="auto"></audio>
+
+<script>
+  // New particle effect: upward-floating bubbles
+  particlesJS("particles-js", {
+    particles: {
+      number: { value: 40, density: { enable: true, value_area: 800 } },
+      color: { value: "#00adb5" },
+      shape: { type: "circle" },
+      opacity: { value: 0.3, random: true },
+      size: { value: 5, random: true },
+      move: {
+        enable: true,
+        speed: 1.5,
+        direction: "top",
+        random: true,
+        out_mode: "out"
+      }
+    }
+  });
+
+  document.getElementById("attendanceForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const form = e.target;
+
+    Swal.fire({
+      title: 'Confirm Submission',
+      text: "Submit your attendance?",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#00adb5',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Submit'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const data = new FormData();
+        data.append("entry.329951031", form.name.value);
+        data.append("entry.685022565", form.attendance.value);
+
+        fetch("https://docs.google.com/forms/d/e/1FAIpQLSdnDzILFI6UI36jT4GCsZMmk6l0BWNQZ_bar2EiF9XduXBDrg/formResponse", {
+          method: "POST",
+          mode: "no-cors",
+          body: data
+        }).then(() => {
+          document.getElementById("popSound").play(); // Play sound
+          Swal.fire({
+            icon: 'success',
+            title: '✅ Submitted!',
+            text: 'Your attendance has been recorded.',
+            confirmButtonColor: '#00adb5'
+          });
+          form.reset();
+        }).catch(() => {
+          Swal.fire({
+            icon: 'error',
+            title: '❌ Error',
+            text: 'Something went wrong. Please try again.',
+            confirmButtonColor: '#d33'
+          });
+        });
+      }
+    });
+  });
+</script>
+</body>
+</html>
