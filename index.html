@@ -112,78 +112,80 @@
   <button type="submit">Submit Attendance</button>
 </form>
 
-<!-- Pop Sound Effect -->
-<audio id="popSound" src="https://assets.mixkit.co/sfx/preview/mixkit-quick-win-video-game-notification-269.wav" preload="auto"></audio>
+<!-- ✅ Updated pop sound -->
+<audio id="popSound" preload="auto">
+  <source src="https://www.soundjay.com/buttons/sounds/button-3.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 
 <script>
   // New particle effect: upward-floating bubbles
- particlesJS("particles-js", {
-  particles: {
-    number: {
-      value: 120,
-      density: {
-        enable: true,
-        value_area: 1000
-      }
-    },
-    color: {
-      value: "#ffffff"
-    },
-    shape: {
-      type: "circle"
-    },
-    opacity: {
-      value: 0.7,
-      random: true,
-      anim: {
-        enable: true,
-        speed: 1,
-        opacity_min: 0.3,
-        sync: false
-      }
-    },
-    size: {
-      value: 2.5,
-      random: true,
-      anim: {
-        enable: true,
-        speed: 4,
-        size_min: 0.3,
-        sync: false
-      }
-    },
-    move: {
-      enable: true,
-      speed: 0.3,
-      direction: "none",
-      random: true,
-      straight: false,
-      out_mode: "out",
-      bounce: false
-    }
-  },
-  interactivity: {
-    detect_on: "canvas",
-    events: {
-      onhover: {
-        enable: true,
-        mode: "repulse"
+  particlesJS("particles-js", {
+    particles: {
+      number: {
+        value: 120,
+        density: {
+          enable: true,
+          value_area: 1000
+        }
       },
-      onclick: {
-        enable: false
+      color: {
+        value: "#ffffff"
       },
-      resize: true
-    },
-    modes: {
-      repulse: {
-        distance: 100,
-        duration: 0.4
+      shape: {
+        type: "circle"
+      },
+      opacity: {
+        value: 0.7,
+        random: true,
+        anim: {
+          enable: true,
+          speed: 1,
+          opacity_min: 0.3,
+          sync: false
+        }
+      },
+      size: {
+        value: 2.5,
+        random: true,
+        anim: {
+          enable: true,
+          speed: 4,
+          size_min: 0.3,
+          sync: false
+        }
+      },
+      move: {
+        enable: true,
+        speed: 0.3,
+        direction: "none",
+        random: true,
+        straight: false,
+        out_mode: "out",
+        bounce: false
       }
-    }
-  },
-  retina_detect: true
-});
-
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: {
+        onhover: {
+          enable: true,
+          mode: "repulse"
+        },
+        onclick: {
+          enable: false
+        },
+        resize: true
+      },
+      modes: {
+        repulse: {
+          distance: 100,
+          duration: 0.4
+        }
+      }
+    },
+    retina_detect: true
+  });
 
   document.getElementById("attendanceForm").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -208,7 +210,11 @@
           mode: "no-cors",
           body: data
         }).then(() => {
-          document.getElementById("popSound").play(); // Play sound
+          const popSound = document.getElementById("popSound");
+          popSound.pause(); // Reset if already playing
+          popSound.currentTime = 0; // Rewind
+          popSound.play(); // 🔊 Play sound
+
           Swal.fire({
             icon: 'success',
             title: '✅ Submitted!',
