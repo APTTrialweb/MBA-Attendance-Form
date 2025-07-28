@@ -15,23 +15,13 @@
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background: #0a0a0a;
-      font-family: 'Segoe UI', sans-serif;
-      color: #fff;
+      margin: 0; padding: 0; width: 100%; height: 100%;
+      background: #0a0a0a; font-family: 'Segoe UI', sans-serif; color: #fff;
     }
     #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
+      position: fixed; width: 100%; height: 100%; z-index: 0;
     }
     .container {
       text-align: center;
@@ -68,12 +58,18 @@
       transform: translateY(-50%);
       color: #bbb;
     }
+    .input-group select,
     .input-group input {
       width: 100%;
       padding: 10px 10px 10px 35px;
       background: rgba(255,255,255,0.1);
       border: none;
       border-radius: 5px;
+      color: #fff;
+      font-size: 1rem;
+    }
+    .input-group select option {
+      background: #0a0a0a;
       color: #fff;
     }
     .input-group input::placeholder {
@@ -103,7 +99,42 @@
 <form id="attendanceForm">
   <div class="input-group">
     <i class="fa-solid fa-user"></i>
-    <input type="text" name="name" placeholder="Enter Your Name" required>
+    <select name="name" required>
+      <option value="">-- Select Student --</option>
+      <option>Kareena</option>
+      <option>Sourabh Verma</option>
+      <option>Vini Jain</option>
+      <option>Khushi Singh</option>
+      <option>Nancy Namdev</option>
+      <option>Harshit Jain</option>
+      <option>Sarthak Jain</option>
+      <option>Manya Jain</option>
+      <option>Shashank jain</option>
+      <option>Sajal Jain</option>
+      <option>Sujal Jain</option>
+      <option>Khyati Jain</option>
+      <option>Samyak Jain</option>
+      <option>Archit jain</option>
+      <option>Soumya Jain</option>
+      <option>Aadish Jain</option>
+      <option>Mehul Jain</option>
+      <option>Mayank  Jain</option>
+      <option>shivani jain</option>
+      <option>TANYA JAIN</option>
+      <option>HARDIK SETHI</option>
+      <option>AMIT JATAV</option>
+      <option>meenanshu modi</option>
+      <option>Priyansh kakkar</option>
+      <option>Swarna Jain</option>
+      <option>Vaishnavi Tyagi</option>
+      <option>Prashangi rathore</option>
+      <option>neelu rajput</option>
+      <option>DIVYANSHI JAIN</option>
+      <option>Soumya Tiwari</option>
+      <option>Shivansh Chouhan</option>
+      <option>Vicky Sharma</option>
+      <option>GOURAV JAIN</option>
+    </select>
   </div>
   <div class="input-group">
     <i class="fa-solid fa-check-circle"></i>
@@ -112,48 +143,23 @@
   <button type="submit">Submit Attendance</button>
 </form>
 
-<!-- ✅ Updated pop sound -->
 <audio id="popSound" preload="auto">
   <source src="https://www.soundjay.com/buttons/sounds/button-3.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
 </audio>
 
 <script>
-  // New particle effect: upward-floating bubbles
   particlesJS("particles-js", {
     particles: {
-      number: {
-        value: 120,
-        density: {
-          enable: true,
-          value_area: 1000
-        }
-      },
-      color: {
-        value: "#ffffff"
-      },
-      shape: {
-        type: "circle"
-      },
+      number: { value: 120, density: { enable: true, value_area: 1000 } },
+      color: { value: "#ffffff" },
+      shape: { type: "circle" },
       opacity: {
-        value: 0.7,
-        random: true,
-        anim: {
-          enable: true,
-          speed: 1,
-          opacity_min: 0.3,
-          sync: false
-        }
+        value: 0.7, random: true,
+        anim: { enable: true, speed: 1, opacity_min: 0.3, sync: false }
       },
       size: {
-        value: 2.5,
-        random: true,
-        anim: {
-          enable: true,
-          speed: 4,
-          size_min: 0.3,
-          sync: false
-        }
+        value: 2.5, random: true,
+        anim: { enable: true, speed: 4, size_min: 0.3, sync: false }
       },
       move: {
         enable: true,
@@ -167,22 +173,8 @@
     },
     interactivity: {
       detect_on: "canvas",
-      events: {
-        onhover: {
-          enable: true,
-          mode: "repulse"
-        },
-        onclick: {
-          enable: false
-        },
-        resize: true
-      },
-      modes: {
-        repulse: {
-          distance: 100,
-          duration: 0.4
-        }
-      }
+      events: { onhover: { enable: true, mode: "repulse" }, resize: true },
+      modes: { repulse: { distance: 100, duration: 0.4 } }
     },
     retina_detect: true
   });
@@ -211,9 +203,9 @@
           body: data
         }).then(() => {
           const popSound = document.getElementById("popSound");
-          popSound.pause(); // Reset if already playing
-          popSound.currentTime = 0; // Rewind
-          popSound.play(); // 🔊 Play sound
+          popSound.pause();
+          popSound.currentTime = 0;
+          popSound.play();
 
           Swal.fire({
             icon: 'success',
