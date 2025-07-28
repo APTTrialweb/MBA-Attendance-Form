@@ -4,14 +4,8 @@
   <meta charset="UTF-8">
   <title>APT Attendance Submission</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-  <!-- particles.js -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
   <style>
@@ -99,41 +93,40 @@
 <form id="attendanceForm">
   <div class="input-group">
     <i class="fa-solid fa-user"></i>
-    <select name="name" required>
-      <option value="">-- Select Student --</option>
-      <option>Kareena</option>
-      <option>Sourabh Verma</option>
-      <option>Vini Jain</option>
-      <option>Khushi Singh</option>
-      <option>Nancy Namdev</option>
-      <option>Harshit Jain</option>
-      <option>Sarthak Jain</option>
-      <option>Manya Jain</option>
-      <option>Shashank jain</option>
-      <option>Sajal Jain</option>
-      <option>Sujal Jain</option>
-      <option>Khyati Jain</option>
-      <option>Samyak Jain</option>
-      <option>Archit jain</option>
-      <option>Soumya Jain</option>
-      <option>Aadish Jain</option>
-      <option>Mehul Jain</option>
-      <option>Mayank  Jain</option>
-      <option>shivani jain</option>
-      <option>TANYA JAIN</option>
-      <option>HARDIK SETHI</option>
-      <option>AMIT JATAV</option>
-      <option>meenanshu modi</option>
-      <option>Priyansh kakkar</option>
-      <option>Swarna Jain</option>
-      <option>Vaishnavi Tyagi</option>
-      <option>Prashangi rathore</option>
-      <option>neelu rajput</option>
-      <option>DIVYANSHI JAIN</option>
-      <option>Soumya Tiwari</option>
-      <option>Shivansh Chouhan</option>
-      <option>Vicky Sharma</option>
-      <option>GOURAV JAIN</option>
+    <select name="name" multiple required size="6">
+      <option value="Kareena">Kareena</option>
+      <option value="Sourabh Verma">Sourabh Verma</option>
+      <option value="Vini Jain">Vini Jain</option>
+      <option value="Khushi Singh">Khushi Singh</option>
+      <option value="Nancy Namdev">Nancy Namdev</option>
+      <option value="Harshit Jain">Harshit Jain</option>
+      <option value="Sarthak Jain">Sarthak Jain</option>
+      <option value="Manya Jain">Manya Jain</option>
+      <option value="Shashank jain">Shashank jain</option>
+      <option value="Sajal Jain">Sajal Jain</option>
+      <option value="Sujal Jain">Sujal Jain</option>
+      <option value="Khyati Jain">Khyati Jain</option>
+      <option value="Samyak Jain">Samyak Jain</option>
+      <option value="Archit jain">Archit jain</option>
+      <option value="Soumya Jain">Soumya Jain</option>
+      <option value="Aadish Jain">Aadish Jain</option>
+      <option value="Mehul Jain">Mehul Jain</option>
+      <option value="Mayank  Jain">Mayank  Jain</option>
+      <option value="shivani jain">shivani jain</option>
+      <option value="TANYA JAIN">TANYA JAIN</option>
+      <option value="HARDIK SETHI">HARDIK SETHI</option>
+      <option value="AMIT JATAV">AMIT JATAV</option>
+      <option value="meenanshu modi">meenanshu modi</option>
+      <option value="Priyansh kakkar">Priyansh kakkar</option>
+      <option value="Swarna Jain">Swarna Jain</option>
+      <option value="Vaishnavi Tyagi">Vaishnavi Tyagi</option>
+      <option value="Prashangi rathore">Prashangi rathore</option>
+      <option value="neelu rajput">neelu rajput</option>
+      <option value="DIVYANSHI JAIN">DIVYANSHI JAIN</option>
+      <option value="Soumya Tiwari">Soumya Tiwari</option>
+      <option value="Shivansh Chouhan">Shivansh Chouhan</option>
+      <option value="Vicky Sharma">Vicky Sharma</option>
+      <option value="GOURAV JAIN">GOURAV JAIN</option>
     </select>
   </div>
   <div class="input-group">
@@ -193,8 +186,9 @@
       confirmButtonText: 'Yes, Submit'
     }).then((result) => {
       if (result.isConfirmed) {
+        const selectedNames = Array.from(form.name.selectedOptions).map(opt => opt.value).join(', ');
         const data = new FormData();
-        data.append("entry.329951031", form.name.value);
+        data.append("entry.329951031", selectedNames);
         data.append("entry.685022565", form.attendance.value);
 
         fetch("https://docs.google.com/forms/d/e/1FAIpQLSdnDzILFI6UI36jT4GCsZMmk6l0BWNQZ_bar2EiF9XduXBDrg/formResponse", {
