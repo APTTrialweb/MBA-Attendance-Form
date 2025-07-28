@@ -117,22 +117,73 @@
 
 <script>
   // New particle effect: upward-floating bubbles
-  particlesJS("particles-js", {
-    particles: {
-      number: { value: 40, density: { enable: true, value_area: 800 } },
-      color: { value: "#00adb5" },
-      shape: { type: "circle" },
-      opacity: { value: 0.3, random: true },
-      size: { value: 5, random: true },
-      move: {
+ particlesJS("particles-js", {
+  particles: {
+    number: {
+      value: 120,
+      density: {
         enable: true,
-        speed: 1.5,
-        direction: "top",
-        random: true,
-        out_mode: "out"
+        value_area: 1000
+      }
+    },
+    color: {
+      value: "#ffffff"
+    },
+    shape: {
+      type: "circle"
+    },
+    opacity: {
+      value: 0.7,
+      random: true,
+      anim: {
+        enable: true,
+        speed: 1,
+        opacity_min: 0.3,
+        sync: false
+      }
+    },
+    size: {
+      value: 2.5,
+      random: true,
+      anim: {
+        enable: true,
+        speed: 4,
+        size_min: 0.3,
+        sync: false
+      }
+    },
+    move: {
+      enable: true,
+      speed: 0.3,
+      direction: "none",
+      random: true,
+      straight: false,
+      out_mode: "out",
+      bounce: false
+    }
+  },
+  interactivity: {
+    detect_on: "canvas",
+    events: {
+      onhover: {
+        enable: true,
+        mode: "repulse"
+      },
+      onclick: {
+        enable: false
+      },
+      resize: true
+    },
+    modes: {
+      repulse: {
+        distance: 100,
+        duration: 0.4
       }
     }
-  });
+  },
+  retina_detect: true
+});
+
 
   document.getElementById("attendanceForm").addEventListener("submit", function (e) {
     e.preventDefault();
