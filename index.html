@@ -17,17 +17,11 @@
   <style>
     * { box-sizing: border-box; }
     html, body {
-      margin: 0; padding: 0;
-      width: 100%; height: 100%;
-      background: #0a0a0a;
-      font-family: 'Segoe UI', sans-serif;
-      color: #fff;
+      margin: 0; padding: 0; width: 100%; height: 100%;
+      background: #0a0a0a; font-family: 'Segoe UI', sans-serif; color: #fff;
     }
     #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
+      position: fixed; width: 100%; height: 100%; z-index: 0;
     }
     .container {
       text-align: center;
@@ -50,12 +44,12 @@
       margin: 20px auto;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(255,255,255,0.1);
-      position: relative;
       z-index: 1;
+      position: relative;
     }
     .input-group {
-      margin: 15px 0;
       position: relative;
+      margin: 15px 0;
     }
     .input-group i {
       position: absolute;
@@ -64,42 +58,22 @@
       transform: translateY(-50%);
       color: #bbb;
     }
-    .custom-dropdown {
-      position: relative;
-    }
-    .dropdown-btn {
+    .input-group select,
+    .input-group input {
       width: 100%;
       padding: 10px 10px 10px 35px;
       background: rgba(255,255,255,0.1);
       border: none;
       border-radius: 5px;
       color: #fff;
-      text-align: left;
-      cursor: pointer;
+      font-size: 1rem;
     }
-    .dropdown-list {
-      display: none;
-      position: absolute;
-      background: #222;
-      border: 1px solid #444;
-      border-radius: 5px;
-      max-height: 200px;
-      overflow-y: auto;
-      width: 100%;
-      top: 100%;
-      left: 0;
-      z-index: 10;
+    .input-group select option {
+      background: #0a0a0a;
+      color: #fff;
     }
-    .dropdown-list label {
-      display: block;
-      padding: 8px;
-      cursor: pointer;
-    }
-    .dropdown-list input {
-      margin-right: 8px;
-    }
-    .dropdown-list label:hover {
-      background: #333;
+    .input-group input::placeholder {
+      color: #ccc;
     }
     button {
       width: 100%;
@@ -125,80 +99,93 @@
 <form id="attendanceForm">
   <div class="input-group">
     <i class="fa-solid fa-user"></i>
-    <div class="custom-dropdown">
-      <div class="dropdown-btn" onclick="toggleDropdown()">-- Select Students --</div>
-      <div class="dropdown-list" id="checkboxList">
-        <label><input type="checkbox" value="Kareena" /> Kareena</label>
-        <label><input type="checkbox" value="Sourabh Verma" /> Sourabh Verma</label>
-        <label><input type="checkbox" value="Vini Jain" /> Vini Jain</label>
-        <label><input type="checkbox" value="Khushi Singh" /> Khushi Singh</label>
-        <label><input type="checkbox" value="Nancy Namdev" /> Nancy Namdev</label>
-        <label><input type="checkbox" value="Harshit Jain" /> Harshit Jain</label>
-        <label><input type="checkbox" value="Sarthak Jain" /> Sarthak Jain</label>
-        <label><input type="checkbox" value="Manya Jain" /> Manya Jain</label>
-        <label><input type="checkbox" value="Shashank" /> Shashank</label>
-      </div>
-    </div>
+    <select name="name" required>
+      <option value="">-- Select Student --</option>
+      <option>Kareena</option>
+      <option>Sourabh Verma</option>
+      <option>Vini Jain</option>
+      <option>Khushi Singh</option>
+      <option>Nancy Namdev</option>
+      <option>Harshit Jain</option>
+      <option>Sarthak Jain</option>
+      <option>Manya Jain</option>
+      <option>Shashank jain</option>
+      <option>Sajal Jain</option>
+      <option>Sujal Jain</option>
+      <option>Khyati Jain</option>
+      <option>Samyak Jain</option>
+      <option>Archit jain</option>
+      <option>Soumya Jain</option>
+      <option>Aadish Jain</option>
+      <option>Mehul Jain</option>
+      <option>Mayank  Jain</option>
+      <option>shivani jain</option>
+      <option>TANYA JAIN</option>
+      <option>HARDIK SETHI</option>
+      <option>AMIT JATAV</option>
+      <option>meenanshu modi</option>
+      <option>Priyansh kakkar</option>
+      <option>Swarna Jain</option>
+      <option>Vaishnavi Tyagi</option>
+      <option>Prashangi rathore</option>
+      <option>neelu rajput</option>
+      <option>DIVYANSHI JAIN</option>
+      <option>Soumya Tiwari</option>
+      <option>Shivansh Chouhan</option>
+      <option>Vicky Sharma</option>
+      <option>GOURAV JAIN</option>
+    </select>
   </div>
-
   <div class="input-group">
     <i class="fa-solid fa-check-circle"></i>
-    <input type="text" name="attendance" placeholder="Present / Absent" required>
+    <input type="text" name="attendance" placeholder="Present (P)" required>
   </div>
   <button type="submit">Submit Attendance</button>
 </form>
 
-<audio id="popSound" src="https://assets.mixkit.co/sfx/preview/mixkit-quick-win-video-game-notification-269.wav" preload="auto"></audio>
+<audio id="popSound" preload="auto">
+  <source src="https://www.soundjay.com/buttons/sounds/button-3.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-  // Particles
   particlesJS("particles-js", {
     particles: {
-      number: { value: 40, density: { enable: true, value_area: 800 } },
-      color: { value: "#00adb5" },
+      number: { value: 120, density: { enable: true, value_area: 1000 } },
+      color: { value: "#ffffff" },
       shape: { type: "circle" },
-      opacity: { value: 0.3, random: true },
-      size: { value: 5, random: true },
+      opacity: {
+        value: 0.7, random: true,
+        anim: { enable: true, speed: 1, opacity_min: 0.3, sync: false }
+      },
+      size: {
+        value: 2.5, random: true,
+        anim: { enable: true, speed: 4, size_min: 0.3, sync: false }
+      },
       move: {
         enable: true,
-        speed: 1.5,
-        direction: "top",
+        speed: 0.3,
+        direction: "none",
         random: true,
-        out_mode: "out"
+        straight: false,
+        out_mode: "out",
+        bounce: false
       }
-    }
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: { onhover: { enable: true, mode: "repulse" }, resize: true },
+      modes: { repulse: { distance: 100, duration: 0.4 } }
+    },
+    retina_detect: true
   });
 
-  // Dropdown toggle
-  function toggleDropdown() {
-    document.getElementById("checkboxList").style.display =
-      document.getElementById("checkboxList").style.display === "block" ? "none" : "block";
-  }
-
-  // Close dropdown if click outside
-  document.addEventListener("click", function (e) {
-    if (!e.target.closest(".custom-dropdown")) {
-      document.getElementById("checkboxList").style.display = "none";
-    }
-  });
-
-  // Submit handler
   document.getElementById("attendanceForm").addEventListener("submit", function (e) {
     e.preventDefault();
-
-    // Get selected students
-    const checkboxes = document.querySelectorAll("#checkboxList input[type='checkbox']");
-    const selectedStudents = Array.from(checkboxes).filter(cb => cb.checked).map(cb => cb.value);
-    const attendanceValue = document.querySelector("input[name='attendance']").value;
-
-    if (selectedStudents.length === 0) {
-      Swal.fire('Please select at least one student!');
-      return;
-    }
+    const form = e.target;
 
     Swal.fire({
       title: 'Confirm Submission',
-      text: "Submit attendance for selected students?",
+      text: "Submit your attendance?",
       icon: 'question',
       showCancelButton: true,
       confirmButtonColor: '#00adb5',
@@ -207,29 +194,31 @@
     }).then((result) => {
       if (result.isConfirmed) {
         const data = new FormData();
-        data.append("entry.329951031", selectedStudents.join(", "));
-        data.append("entry.685022565", attendanceValue);
+        data.append("entry.329951031", form.name.value);
+        data.append("entry.685022565", form.attendance.value);
 
         fetch("https://docs.google.com/forms/d/e/1FAIpQLSdnDzILFI6UI36jT4GCsZMmk6l0BWNQZ_bar2EiF9XduXBDrg/formResponse", {
           method: "POST",
           mode: "no-cors",
           body: data
         }).then(() => {
-          document.getElementById("popSound").play();
+          const popSound = document.getElementById("popSound");
+          popSound.pause();
+          popSound.currentTime = 0;
+          popSound.play();
+
           Swal.fire({
             icon: 'success',
             title: '✅ Submitted!',
-            text: 'Attendance recorded.',
+            text: 'Your attendance has been recorded.',
             confirmButtonColor: '#00adb5'
           });
-          document.getElementById("attendanceForm").reset();
-          checkboxes.forEach(cb => cb.checked = false);
-          document.querySelector(".dropdown-btn").textContent = "-- Select Students --";
+          form.reset();
         }).catch(() => {
           Swal.fire({
             icon: 'error',
             title: '❌ Error',
-            text: 'Please try again.',
+            text: 'Something went wrong. Please try again.',
             confirmButtonColor: '#d33'
           });
         });
